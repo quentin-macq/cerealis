@@ -36,6 +36,9 @@ export default {
       });
 
       this.imageSrc = image.webPath;
+
+      let filter = document.querySelector('.camera-item');
+      filter.style.opacity = 0.5;
     }
   }
 };

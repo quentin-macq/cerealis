@@ -28,4 +28,4 @@ export default {
 };
 </script>
 
-<style scoped />
+<style lang="scss" src="./home-page.scss" scoped />
