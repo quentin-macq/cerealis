@@ -1,0 +1,13 @@
+.popup-item {
+  &__share-button {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__config {
+    //width: 100%;
+  }
+}

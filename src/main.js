@@ -1,8 +1,30 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router';
 
-import { IonicVue } from '@ionic/vue';
+import store from './store/store';
+
+import {
+  IonicVue,
+  IonApp,
+  IonPage,
+  IonImg,
+  IonIcon,
+  IonFab,
+  IonFabButton,
+  IonButton,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonSlides,
+  IonSlide,
+  IonAlert,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent
+} from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -23,8 +45,27 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const app = createApp(App).use(IonicVue).use(router);
+const app = createApp(App).use(IonicVue);
+app.use(store);
 
-router.isReady().then(() => {
-  app.mount('#app');
-});
+app.component('ion-app', IonApp);
+app.component('ion-page', IonPage);
+app.component('ion-fab', IonFab);
+app.component('ion-fab-button', IonFabButton);
+app.component('ion-button', IonButton);
+app.component('ion-img', IonImg);
+app.component('ion-icon', IonIcon);
+app.component('ion-content', IonContent);
+app.component('ion-grid', IonGrid);
+app.component('ion-row', IonRow);
+app.component('ion-col', IonCol);
+app.component('ion-slides', IonSlides);
+app.component('ion-slide', IonSlide);
+app.component('ion-alert', IonAlert);
+app.component('ion-card', IonCard);
+app.component('ion-card-header', IonCardHeader);
+app.component('ion-card-title', IonCardTitle);
+app.component('ion-card-subtitle', IonCardSubtitle);
+app.component('ion-card-content', IonCardContent);
+
+app.mount('#app');
