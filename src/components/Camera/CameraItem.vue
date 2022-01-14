@@ -1,49 +1,77 @@
 <template>
-  <ion-content class="camera-item">
+  <ion-content class="camera-item" fullscreen>
     <PopupItem :imageUrl="imageUrl" v-if="imageUrl" />
 
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button @click="takePhoto()">
-        <ion-icon :icon="camera" />
-      </ion-fab-button>
-    </ion-fab>
+    <ion-content v-else>
+      <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button class="camera-item__help" id="hover-button">
+          <ion-icon :icon="help" />
+          <ion-popover trigger-action="hover" trigger="hover-button">
+            <ion-content>Help !</ion-content>
+          </ion-popover>
+        </ion-fab-button>
+      </ion-fab>
+
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button @click="takePhoto">
+          <ion-icon :icon="camera" />
+        </ion-fab-button>
+      </ion-fab>
+    </ion-content>
   </ion-content>
 </template>
 
-<script>
+<script setup>
 import PopupItem from '@/components/Popup/PopupItem';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { camera } from 'ionicons/icons';
+import { camera, help } from 'ionicons/icons';
 import { ref } from 'vue';
+// import { onMounted, ref } from 'vue';
 
-export default {
-  components: {
-    PopupItem
-  },
+// onMounted(async () => {
+//   try {
+//     const image = await Camera.getPhoto({
+//       quality: 90,
+//       allowEditing: false,
+//       resultType: CameraResultType.Uri,
+//       correctOrientation: true,
+//       presentationStyle: 'fullscreen',
+//       saveToGallery: true
+//     });
+//
+//     imageUrl.value = image.webPath;
+//   } catch (e) {
+//     console.log('error', e);
+//   }
+// });
 
-  setup() {
-    const imageUrl = ref('');
+// let popover = ref(false);
+const imageUrl = ref('');
 
-    const takePhoto = async () => {
-      // Otherwise, make the call:
-      try {
-        const image = await Camera.getPhoto({
-          quality: 90,
-          allowEditing: true,
-          resultType: CameraResultType.Uri
-          // source: CameraSource.Prompt,
-        });
+// const isPopoverOpen = () => {
+//   const help = document.querySelector('.camera-item__help');
+//
+//   help.addEventListener('click', () => {
+//     popover = !popover.value;
+//   });
+//
+//   return popover;
+// };
 
-        imageUrl.value = image.dataUrl;
-      } catch (e) {
-        console.log('error', e);
-      }
-    };
-    return {
-      takePhoto,
-      imageUrl,
-      camera
-    };
+const takePhoto = async () => {
+  try {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      correctOrientation: true,
+      presentationStyle: 'fullscreen',
+      saveToGallery: true
+    });
+
+    imageUrl.value = image.webPath;
+  } catch (e) {
+    console.log('error', e);
   }
 };
 </script>

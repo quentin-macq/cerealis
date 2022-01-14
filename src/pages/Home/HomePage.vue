@@ -1,31 +1,24 @@
 <template>
-  <ion-page>
+  <ion-page class="home-page">
     <CameraItem v-if="welcomeMessage" />
     <SlideItem v-else />
   </ion-page>
 </template>
 
-<script>
+<script setup>
 import SlideItem from '@/components/Slide/SlideItem';
 import CameraItem from '@/components/Camera/CameraItem';
+import { computed, onBeforeMount } from 'vue';
+import { useStore } from 'vuex';
 
-export default {
-  components: {
-    SlideItem,
-    CameraItem
-  },
+const store = useStore();
 
-  computed: {
-    welcomeMessage() {
-      return this.$store.state.welcomeMessage;
-    }
-  },
+const welcomeMessage = computed(() => store.state.welcomeMessage);
 
-  beforeCreate() {
-    localStorage.clear();
-    this.$store.commit('initialiseStore');
-  }
-};
+onBeforeMount(() => {
+  localStorage.clear();
+  store.commit('initialiseStore');
+});
 </script>
 
 <style lang="scss" src="./home-page.scss" scoped />

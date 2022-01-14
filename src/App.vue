@@ -1,18 +1,18 @@
 <template>
   <ion-app>
-    <HomePage />
+    <ion-router-outlet />
   </ion-app>
 </template>
 
-<script>
-import { IonApp } from '@ionic/vue';
-import HomePage from '@/pages/Home/HomePage';
+<script setup>
+import { useStore } from 'vuex';
+import { onBeforeMount } from 'vue';
+import { IonRouterOutlet } from '@ionic/vue';
 
-export default {
-  name: 'App',
-  components: {
-    IonApp,
-    HomePage
-  }
-};
+const store = useStore();
+
+onBeforeMount(() => {
+  localStorage.clear();
+  store.commit('initialiseStore');
+});
 </script>

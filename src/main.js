@@ -3,6 +3,7 @@ import App from './App.vue';
 
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
+import router from '@/router';
 import store from './store/store';
 
 import {
@@ -12,7 +13,9 @@ import {
   IonImg,
   IonIcon,
   IonFab,
+  IonFabList,
   IonFabButton,
+  IonBackButton,
   IonButton,
   IonContent,
   IonGrid,
@@ -47,14 +50,17 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const app = createApp(App).use(IonicVue);
+const app = createApp(App).use(IonicVue).use(router);
+
 app.use(store);
 
 app.component('ion-app', IonApp);
 app.component('ion-page', IonPage);
 app.component('ion-fab', IonFab);
+app.component('ion-fab-list', IonFabList);
 app.component('ion-fab-button', IonFabButton);
 app.component('ion-button', IonButton);
+app.component('ion-back-button', IonBackButton);
 app.component('ion-img', IonImg);
 app.component('ion-icon', IonIcon);
 app.component('ion-content', IonContent);
