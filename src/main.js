@@ -1,6 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
 import store from './store/store';
 
 import {
@@ -69,3 +71,5 @@ app.component('ion-card-subtitle', IonCardSubtitle);
 app.component('ion-card-content', IonCardContent);
 
 app.mount('#app');
+
+defineCustomElements(window);

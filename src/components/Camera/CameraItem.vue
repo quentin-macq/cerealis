@@ -1,6 +1,6 @@
 <template>
   <ion-content class="camera-item">
-    <PopupItem :imageSrc="imageSrc" v-if="imageSrc" />
+    <PopupItem :imageUrl="imageUrl" v-if="imageUrl" />
 
     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
       <ion-fab-button @click="takePhoto()">
@@ -14,32 +14,36 @@
 import PopupItem from '@/components/Popup/PopupItem';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { camera } from 'ionicons/icons';
+import { ref } from 'vue';
 
 export default {
   components: {
     PopupItem
   },
 
-  data() {
+  setup() {
+    const imageUrl = ref('');
+
+    const takePhoto = async () => {
+      // Otherwise, make the call:
+      try {
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: true,
+          resultType: CameraResultType.Uri
+          // source: CameraSource.Prompt,
+        });
+
+        imageUrl.value = image.dataUrl;
+      } catch (e) {
+        console.log('error', e);
+      }
+    };
     return {
-      imageSrc: '',
+      takePhoto,
+      imageUrl,
       camera
     };
-  },
-
-  methods: {
-    async takePhoto() {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.Uri
-      });
-
-      this.imageSrc = image.webPath;
-
-      let filter = document.querySelector('.camera-item');
-      filter.style.opacity = 0.5;
-    }
   }
 };
 </script>

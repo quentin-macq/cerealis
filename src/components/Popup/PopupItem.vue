@@ -8,7 +8,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-img :src="imageSrc" alt="" class="popup-item__config" />
+        <ion-img :src="imageUrl" alt="" class="popup-item__config" />
 
         <ion-content class="popup-item__share-button">
           <ion-fab horizontal="start" vertical="top">
@@ -53,7 +53,7 @@ export default {
   },
 
   props: {
-    imageSrc: {
+    imageUrl: {
       type: String,
       required: true
     }

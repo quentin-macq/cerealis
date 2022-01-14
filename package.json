@@ -20,6 +20,7 @@
     "@capacitor/ios": "3.3.4",
     "@capacitor/storage": "^1.2.3",
     "@ionic/lab": "^3.2.10",
+    "@ionic/pwa-elements": "^3.1.1",
     "@ionic/storage": "^3.0.6",
     "@ionic/vue": "^6.0.0",
     "@ionic/vue-router": "^6.0.0",

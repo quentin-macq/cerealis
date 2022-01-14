@@ -1,5 +1,5 @@
 {
-	"appId": "com.example.app",
+	"appId": "fr.epsi.cerealis",
 	"appName": "cerealis",
 	"webDir": "public",
 	"bundledWebRuntime": false
