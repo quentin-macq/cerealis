@@ -1,5 +1,5 @@
 <template>
-  <ion-page class="home-page">
+  <ion-page className="home-page">
     <CameraItem v-if="welcomeMessage" />
     <SlideItem v-else />
   </ion-page>
